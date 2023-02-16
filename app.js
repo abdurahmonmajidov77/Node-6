@@ -12,16 +12,48 @@ app.use(express.json())
 //     console.log(req.body);
 //     res.send('POST')
 // });
-app.post('/', function(req, res){
-    const newUser = req.body
-    user.push(newUser)
+// app.post('/', function(req, res){
+//     const newUser = req.body
+//     user.push(newUser)
+//     res.status(201).json({
+//         status: "success",
+//         message: "Added New User",
+//         error: null,
+//         data:[
+//             user
+//         ]
+//     })
+// });
+// app.put('/users/:id', function(req, res){
+//     const newUser = req.body
+//     const id = req.params.id
+//     user[id]=newUser
+//     user.push(newUser)
+//     res.status(201).json({
+//         status: "success",
+//         message: "Edited User",
+//         error: null,
+//         data:[
+//             user
+//         ]
+//     })
+// });
+// app.delete('/users/:id', function(req, res){
+//     const id = req.params.id
+//     delete user[id]
+//     res.status(201).json({
+//         status: "success",
+//         message: "Deleted User",
+//         error: null,
+//         data:[
+//             user
+//         ]
+//     })
+// });
+app.get('/date', function(req, res){
+    const date = new Date()
     res.status(201).json({
-        status: "success",
-        message: "Added New User",
-        error: null,
-        data:[
-            user
-        ]
+        date
     })
 });
 
