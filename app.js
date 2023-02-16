@@ -7,7 +7,7 @@ app.get('/', function(req, res){
     res.send('Hello World!')
 });
 app.post('/', function(req, res){
-    console.log(req);
+    console.log(req.body);
     res.send('POST')
 });
 
