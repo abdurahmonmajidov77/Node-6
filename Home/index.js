@@ -2,49 +2,58 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 const PORT = 8080
+app.use(express.json())
 
 function reader() {
-    const data = fs.writeFileSync('./db.json', 'utf-8',(err, data) => {
+    const data = fs.readFileSync('./Home/db.json', 'utf-8',(err, data) => {
         if(err) throw err
-        return d
+        return data
     })
-    return JSON.parse(data)
+    const d = JSON.parse(data)
+    return d
 }
 
 function writer(data) {
     const d = JSON.stringify(data)
-    fs.writeFileSync('./db.json', d,(err) => {
+    fs.writeFileSync('./Home/db.json', d,(err) => {
         if(err) throw err
         return d
     })
 }
 
-// const Data = fs.readFileSync('./Home/db.js', 'utf-8', (err, data) => {
-//     if(err) throw err
-//     return data
-// })
-
-app.get('/', function(req, res){
+app.get('/user', function(req, res){
     console.log('GET');
     const data = reader()
     res.status(201).json({
         data
     })
 })
-app.post('/', function(req, res){
+app.post('/user', function(req, res){
     console.log('POST');
     const data = reader()
-    data.push()
+    data.push(req.body)
+    writer(data)
+    res.status(201).json({
+        data
+    })
 })
-// app.delete('/', function(req, res){
-//     console.log('DELET');
-//     const id = req.params.id
-//     delete Data[id]
-//     fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
-//         if(err) throw err
-//     })
-//     res.end(Data)
-// })
-
+app.put('/user/:id', function(req, res){
+    console.log('POST');
+    const data = reader()
+    data[req.params.id] = req.body
+    writer(data)
+    res.status(201).json({
+        data
+    })
+})
+app.delete('/user/:id', function(req, res){
+    console.log('DELETE!');
+    const data = reader()
+    delete data[req.params.id]
+    writer(data)
+    res.status(201).json({
+        data
+    })
+})
 
 app.listen(PORT)
