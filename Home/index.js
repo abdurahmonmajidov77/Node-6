@@ -3,11 +3,10 @@ const fs = require('fs')
 const app = express()
 const PORT = 8080
 
-const Data = fs.readFileSync('./db.js', 'utf-8', (err, data) => {
+const Data = fs.readFileSync('./Home/db.js', 'utf-8', (err, data) => {
     if(err) throw err
     return data
 })
-app.use(express.json())
 
 app.get('/', function(req, res){
     console.log('GET');
@@ -22,15 +21,15 @@ app.post('/', function(req, res){
     })
     res.end(Data)
 })
-app.delete('/', function(req, res){
-    console.log('DELET');
-    const id = req.params.id
-    delete Data[id]
-    fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
-        if(err) throw err
-    })
-    res.end(Data)
-})
+// app.delete('/', function(req, res){
+//     console.log('DELET');
+//     const id = req.params.id
+//     delete Data[id]
+//     fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
+//         if(err) throw err
+//     })
+//     res.end(Data)
+// })
 
 
 app.listen(PORT)
