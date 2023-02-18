@@ -1,4 +1,4 @@
-[
+const Data = [
     {
         name: "Ali",
         password: 1202
@@ -8,3 +8,4 @@
         password: 2302
     }
 ]
+module.exports=Data

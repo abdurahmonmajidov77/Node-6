@@ -2,7 +2,7 @@
   "name": "dars-6",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./Home/index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
