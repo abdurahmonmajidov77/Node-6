@@ -38,7 +38,7 @@ app.post('/user', function(req, res){
     })
 })
 app.put('/user/:id', function(req, res){
-    console.log('POST');
+    console.log('PUT');
     const data = reader()
     data[req.params.id] = req.body
     writer(data)
@@ -47,7 +47,7 @@ app.put('/user/:id', function(req, res){
     })
 })
 app.delete('/user/:id', function(req, res){
-    console.log('DELETE!');
+    console.log('DELETE');
     const data = reader()
     delete data[req.params.id]
     writer(data)
