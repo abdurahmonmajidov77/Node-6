@@ -51,11 +51,11 @@ app.use(express.json())
 //     })
 // });
 
-app.get('/', function(req, res){
-    const date = new Date()
-    res.status(201).json({
-        date
-    })
-});
+// app.get('/', function(req, res){
+//     const date = new Date()
+//     res.status(201).json({
+//         date
+//     })
+// });
 
 app.listen(PORT)
