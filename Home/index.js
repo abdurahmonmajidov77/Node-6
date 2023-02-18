@@ -13,22 +13,24 @@ app.get('/', function(req, res){
     console.log('GET');
     res.send(Data)
 })
-// app.post('/', function(req, res){
-//     console.log('POST');
-//     const postData = Data.push(req.body)
-//     fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
-//         if(err) throw err
-//     })
-//     res.end(Data)
-// })
-// app.delete('/', function(req, res){
-//     console.log('DELET');
-//     const postData = Data.push(req.body)
-//     fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
-//         if(err) throw err
-//     })
-//     res.end(Data)
-// })
+app.post('/', function(req, res){
+    console.log('POST');
+    const postData = Data.push(req.body)
+    fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
+        if(err) throw err
+        return data
+    })
+    res.end(Data)
+})
+app.delete('/', function(req, res){
+    console.log('DELET');
+    const id = req.params.id
+    delete Data[id]
+    fs.writeFileSync('./db.js', `${postData}`, (err, data) => {
+        if(err) throw err
+    })
+    res.end(Data)
+})
 
 
 app.listen(PORT)
