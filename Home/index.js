@@ -3,6 +3,14 @@ const fs = require('fs')
 const app = express()
 const PORT = 8080
 
+function writer(data) {
+    const d = JSON.stringify(data)
+    fs.writeFileSync('./db.json', d,(err) => {
+        if(err) throw err
+        return d
+    })
+}
+
 const Data = fs.readFileSync('./Home/db.js', 'utf-8', (err, data) => {
     if(err) throw err
     return data
@@ -19,7 +27,14 @@ app.post('/', function(req, res){
         if(err) throw err
         return data
     })
-    res.end(Data)
+    res.status(201).json({
+        status: "success",
+        message: "Posted User",
+        error: null,
+        data:[
+            user
+        ]
+    })
 })
 // app.delete('/', function(req, res){
 //     console.log('DELET');
